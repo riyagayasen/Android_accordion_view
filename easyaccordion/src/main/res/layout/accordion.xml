@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/accordion_background"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/heading_layout"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:id="@+id/dropdown_image"
+            android:src="@drawable/ic_arrow_drop_down_black_24dp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:id="@+id/dropup_image"
+            android:src="@drawable/ic_arrow_drop_up_black_24dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/heading"
+            android:layout_margin="10dp"
+            tools:text="What is the most awkward moment is this world?"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/partition"
+        android:background="@android:color/darker_gray" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:layout_margin="10dp"
+        android:id="@+id/paragraph_layout"
+        android:visibility="visible"
+        tools:visibility="visible"
+        android:orientation="vertical"
+
+        >
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="accordion">
+
+        <attr name="isPartitioned" format="boolean"/>
+        <attr name="isAnimated" format="boolean"/>
+        <attr name="heading" format="string"/>
+        <attr name="headingTextSize" format="dimension"/>
+        <attr name="isExpanded" format="boolean"/>
+
+    </declare-styleable>
+</resources>

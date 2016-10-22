@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.riyagayasen.easyaccordiondemo.MainActivity">
+
+    <com.riyagayasen.easyaccordion.AccordionView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:visibility="visible"
+        android:weightSum="1"
+        app:isAnimated="false"
+        app:heading="This is a demo accordion"
+        app:isExpanded="true"
+        app:isPartitioned="false">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Demo accordion text" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test Button"
+            android:id="@+id/button_2"
+            android:layout_below="@+id/textView" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test Button 2"
+            android:layout_below="@+id/button_2" />
+
+
+    </com.riyagayasen.easyaccordion.AccordionView>
+
+</RelativeLayout>
