@@ -1,3 +1,5 @@
+# Android_accordion_view
+A very easy to use accordion component for android. 
 
 I created this component because I wanted a component that could behave as an accordion, where in, the developer could set the heading and the UI elements in the body right from the layout xml or from the class. I also wanted to have various other UI features like animation to be controlled by the developer from the xml itself. 
 
