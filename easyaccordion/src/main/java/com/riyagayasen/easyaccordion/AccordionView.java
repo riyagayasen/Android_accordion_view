@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
@@ -62,7 +63,7 @@ public class AccordionView extends RelativeLayout {
      */
     public AccordionView(Context context) {
         super(context);
-        initializeViewWithoutChildren(context);
+        prepareLayoutWithoutChildren(context);
     }
 
     /***
@@ -182,6 +183,27 @@ public class AccordionView extends RelativeLayout {
 
     }
 
+    private void prepareLayoutWithoutChildren(Context context) {
+        initializeViewWithoutChildren(context);
+        partition.setVisibility(isPartitioned ? VISIBLE : INVISIBLE);
+        heading.setText(headingString);
+        paragraph.setVisibility(VISIBLE);
+        if (isAnimated) {
+            headingLayout.setLayoutTransition(new LayoutTransition());
+        } else {
+            headingLayout.setLayoutTransition(null);
+
+        }
+
+        if (isExpanded)
+            expand();
+        else
+            collapse();
+
+        setOnClickListenerOnHeading();
+
+    }
+
 
     @Override
     protected void onFinishInflate() {
@@ -262,15 +284,15 @@ public class AccordionView extends RelativeLayout {
     };
 
 
-    protected void addViewToBody(View child) {
+    public void addViewToBody(View child) {
         paragraph.addView(child);
     }
 
-    protected void setHeadingString(String headingString) {
+    public void setHeadingString(String headingString) {
         heading.setText(headingString);
     }
 
-    protected void setIsAnimated(Boolean isAnimated) {
+    public void setIsAnimated(Boolean isAnimated) {
         this.isAnimated = isAnimated;
     }
 
@@ -294,6 +316,13 @@ public class AccordionView extends RelativeLayout {
         this.listener = listener;
     }
 
+    /***
+     * This function returns the body of the accordion
+     * @return
+     */
+    public RelativeLayout getBody() {
+        return paragraph;
+    }
     public Boolean getExpanded() {
         return isExpanded;
     }
