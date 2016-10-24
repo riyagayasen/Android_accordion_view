@@ -71,6 +71,10 @@ You would see that there are several new attributes I have defined for the accor
   3. Expanded (boolean): this value determines if the paragraph is expanded by default. 
   
         app:isExpanded="true"
+  
+  4. Animated (boolean): this value determines if the accordion expands or collapses with an animation
+        
+        app:isAnimated="true"
       
   
  
