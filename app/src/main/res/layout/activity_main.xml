@@ -16,11 +16,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:visibility="visible"
-        android:weightSum="1"
-        app:isAnimated="false"
         app:heading="This is a demo accordion"
         app:isExpanded="true"
-        app:isPartitioned="false">
+        app:isPartitioned="true">
 
         <TextView
             android:id="@+id/textView"
