@@ -52,6 +52,8 @@ public class AccordionView extends RelativeLayout {
 
     int paragraphBottomMargin;
 
+    AccordionExpansionListener listener;
+
     /***
      * Constructor taking only the context. This is useful in case
      * the developer wants to programatically create an accordion view.
@@ -208,6 +210,9 @@ public class AccordionView extends RelativeLayout {
 
         dropupImage.setVisibility(VISIBLE);
         dropdownImage.setVisibility(GONE);
+        if(!WidgetHelper.isNullOrBlank(listener)) {
+            listener.onExpanded(this);
+        }
 
 
     }
@@ -230,6 +235,10 @@ public class AccordionView extends RelativeLayout {
 
         dropupImage.setVisibility(GONE);
         dropdownImage.setVisibility(VISIBLE);
+
+        if(!WidgetHelper.isNullOrBlank(listener)) {
+            listener.onCollapsed(this);
+        }
 
 
     }
@@ -279,6 +288,10 @@ public class AccordionView extends RelativeLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
+    }
+
+    public void setOnExpandListener(AccordionExpansionListener listener) {
+        this.listener = listener;
     }
 
     public Boolean getExpanded() {
