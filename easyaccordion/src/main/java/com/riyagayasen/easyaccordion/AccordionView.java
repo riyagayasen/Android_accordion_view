@@ -357,6 +357,15 @@ public class AccordionView extends RelativeLayout {
     public RelativeLayout getBody() {
         return paragraph;
     }
+
+    /***
+     * This function returns the body of the accordion
+     * @return
+     */
+    public RelativeLayout getParagraph() {
+        return paragraph;
+    }
+
     public Boolean getExpanded() {
         return isExpanded;
     }
