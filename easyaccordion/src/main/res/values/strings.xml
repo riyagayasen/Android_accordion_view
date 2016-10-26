@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">EasyAccordion</string>
-    <string name="no_network_connection">No Network Connection</string>
-    <string name="server_error_message">Sorry, something went wrong. Please try again.</string>
 </resources>
