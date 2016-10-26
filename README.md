@@ -9,7 +9,12 @@ To add the Accordion component,(Note: this project was built using Android Studi
   
           'compile project(path: ':easyaccordion')' 
           
-    to the build.gradle file inside the app folder 
+    to the build.gradle file inside the app folder. And modify the settings.gradle file in your project as 
+            
+           include ':app', ':easyaccordion'
+
+           project (':easyaccordion').projectDir = new File('/path/to/the/folder/easyaccordion')
+
   3. Now that you have added the project in your app, it is time to use it. 
  
 The best way to use this component is from the layout xml file. The following example with llustrate the use: 
