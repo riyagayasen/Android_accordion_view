@@ -6,9 +6,6 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -53,7 +50,7 @@ public class AccordionView extends RelativeLayout {
 
     int paragraphBottomMargin;
 
-    AccordionExpansionListener listener;
+    AccordionExpansionCollapseListener listener;
 
     /***
      * Constructor taking only the context. This is useful in case
@@ -130,6 +127,11 @@ public class AccordionView extends RelativeLayout {
     }
 
 
+    /***
+     * This function is called when the accordion is added in the XML itself and is used to initialize the various components
+     * of the accordion
+     * @param context
+     */
     private void initializeViews(Context context) {
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -161,6 +163,11 @@ public class AccordionView extends RelativeLayout {
 
     }
 
+    /***
+     * This function; after initializing the accordion, performs necessary UI operations like setting the partition or adding animation or
+     * expanding or collapsing the accordion
+     * @param context
+     */
     private void prepareLayout(Context context) {
         initializeViews(context);
         partition.setVisibility(isPartitioned ? VISIBLE : INVISIBLE);
@@ -183,6 +190,11 @@ public class AccordionView extends RelativeLayout {
 
     }
 
+    /***
+     * This function is used to prepare the layout after the initialize funciton but is called when the developer PROGRAMATICALLY adds
+     * the accordion from the class. Hence, the accordion does not have the UI elements (children) yet
+     * @param context
+     */
     private void prepareLayoutWithoutChildren(Context context) {
         initializeViewWithoutChildren(context);
         partition.setVisibility(isPartitioned ? VISIBLE : INVISIBLE);
@@ -205,6 +217,7 @@ public class AccordionView extends RelativeLayout {
     }
 
 
+
     @Override
     protected void onFinishInflate() {
         prepareLayout(getContext());
@@ -212,6 +225,9 @@ public class AccordionView extends RelativeLayout {
 
     }
 
+    /***
+     * This function expands the accordion
+     */
     private void expand() {
         if (isAnimated) {
           /*  LinearLayout parent = (LinearLayout)paragraph.getParent();
@@ -239,6 +255,9 @@ public class AccordionView extends RelativeLayout {
 
     }
 
+    /***
+     * This function collapses the accordion
+     */
     private void collapse() {
 
         if (isAnimated) {
@@ -284,35 +303,50 @@ public class AccordionView extends RelativeLayout {
     };
 
 
+    /***
+     * This function adds the view to the body or the 'paragraph'
+     * @param child
+     */
     public void addViewToBody(View child) {
         paragraph.addView(child);
     }
 
+    /***
+     * Set the heading of the accordion
+     * @param headingString
+     */
     public void setHeadingString(String headingString) {
         heading.setText(headingString);
     }
+
 
     public void setIsAnimated(Boolean isAnimated) {
         this.isAnimated = isAnimated;
     }
 
+    /***
+     * Get the status whether the accordion is going to animate itself on expansion or collapse
+     * @return
+     */
     public Boolean getAnimated() {
         return isAnimated;
     }
 
+    /***
+     * Set whether the accordion would play an animation when expanding/collapsing
+     * @param animated
+     */
     public void setAnimated(Boolean animated) {
         isAnimated = animated;
 
 
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-    }
-
-    public void setOnExpandListener(AccordionExpansionListener listener) {
+    /***
+     * Tell the accordion what to do; when expanded or collapsed.
+     * @param listener
+     */
+    public void setOnExpandCollapseListener(AccordionExpansionCollapseListener listener) {
         this.listener = listener;
     }
 
@@ -327,16 +361,29 @@ public class AccordionView extends RelativeLayout {
         return isExpanded;
     }
 
+    /***
+     * Tell the accordion whether to expand or remain collapsed by default, when drawn
+     * @param expanded
+     */
     public void setExpanded(Boolean expanded) {
         isExpanded = expanded;
     }
 
+    /***
+     * The the status of the partition line
+      * @return
+     */
     public Boolean getPartitioned() {
         return isPartitioned;
     }
 
+    /***
+     * This function tells the accordion whether to make the partition visible or not
+     * @param partitioned
+     */
     public void setPartitioned(Boolean partitioned) {
         isPartitioned = partitioned;
+        partition.setVisibility(isPartitioned ? VISIBLE : INVISIBLE);
     }
 
 

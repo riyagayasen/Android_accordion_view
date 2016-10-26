@@ -29,6 +29,11 @@ public class WidgetHelper {
         return false;
     }
 
+    /***
+     * Function to check if an object is null or blank
+     * @param object
+     * @return
+     */
     public static boolean isNullOrBlank(Object object) {
         if (object instanceof String)
             return isNullOrBlank((String) object);
@@ -44,6 +49,11 @@ public class WidgetHelper {
         return false;
     }
 
+    /***
+     * Function to check if an integer is zero or non zero
+     * @param object
+     * @return
+     */
     public static boolean isNullOrBlank(int object) {
         if (object == 0)
             return true;
@@ -53,6 +63,12 @@ public class WidgetHelper {
 
     }
 
+    /***
+     * This function returns the actual height the layout. The getHeight() function returns the current height which might be zero if
+     * the layout's visibility is GONE
+     * @param layout
+     * @return
+     */
     public static int getFullHeight(ViewGroup layout) {
         layout.measure(0,0);
         int totalHeight = layout.getMeasuredHeight();
