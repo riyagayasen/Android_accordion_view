@@ -64,18 +64,50 @@ You would see that there are several new attributes I have defined for the accor
   
   2. Partition (boolean): the 'line' between the heading and the paragraph. 
   
-        app:isPartitioned="false"
+        app:isPartitioned="true"
+      
+      OR
+        
+        accordionView.setPartitioned(true);
     
     This  value determines if the line is drawn between the heading and the paragraph. 
   
   3. Expanded (boolean): this value determines if the paragraph is expanded by default. 
   
         app:isExpanded="true"
+        
+       OR
+       
+        accordionView.setExpanded(true);
   
   4. Animated (boolean): this value determines if the accordion expands or collapses with an animation
         
         app:isAnimated="true"
       
-  
+       OR
+       
+        accordionView.setAnimated(true);
+        
+      The accordion view above is an AccordionView object that can be created as (in an Activity):
+        
+        AccordionView wordView = new AccordionView(this);
+      
+      
  
 To add different elements into the body (paragraph) of the accordion component, you can simply define them within the AccordionView tag. 
+
+You can also add a listener to be triggered when the accordion is expanded or collapsed
+
+        accordionView.setOnExpandCollapseListener(new AccordionExpansionCollapseListener() {
+                    @Override
+                    public void onExpanded(AccordionView view) {
+                        //your code here
+                    }
+
+                    @Override
+                    public void onCollapsed(AccordionView view) {
+                       //you code here
+                    }
+                });
+
+In case of any questions, kindly email me at riyagayasen@gmail.com 
