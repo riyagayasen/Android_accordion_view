@@ -14,9 +14,19 @@ To add the Accordion component,(Note: this project was built using Android Studi
            include ':app', ':easyaccordion'
 
            project (':easyaccordion').projectDir = new File('/path/to/the/folder/easyaccordion')
+           
+    OR add (to your app module's build.gradle)
+    
+          compile 'com.riyagayasen.android:easyaccordion:1.0.1'  
 
   3. Now that you have added the project in your app, it is time to use it. 
- 
+
+You can generate the accordion component either from the java class or from the XML
+
+The accordion component can also be generated from the java class 
+        
+         AccordionView accordionView = new AccordionView(this);
+
 The best way to use this component is from the layout xml file. The following example with llustrate the use: 
 
       <com.riyagayasen.easyaccordion.AccordionView
@@ -52,7 +62,7 @@ The best way to use this component is from the layout xml file. The following ex
 The 'app' namespace can be defined as 
      
      xmlns:app="http://schemas.android.com/apk/res-auto"
-     
+
 This generates the layout as 
 
 ![Alt text](/screenshot.png?raw=true "Optional Title")
