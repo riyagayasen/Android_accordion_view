@@ -70,8 +70,31 @@ public class WidgetHelper {
      * @return
      */
     public static int getFullHeight(ViewGroup layout) {
-        layout.measure(0,0);
-        int totalHeight = layout.getMeasuredHeight();
+        int specWidth = View.MeasureSpec.makeMeasureSpec(0 /* any */, View.MeasureSpec.UNSPECIFIED);
+        int specHeight = View.MeasureSpec.makeMeasureSpec(0 /* any */, View.MeasureSpec.UNSPECIFIED);
+
+
+        layout.measure(specWidth,specHeight);
+        int totalHeight = 0;//layout.getMeasuredHeight();
+        int initialVisibility = layout.getVisibility();
+        layout.setVisibility(View.VISIBLE);
+        int numberOfChildren = layout.getChildCount();
+        for(int i = 0;i<numberOfChildren;i++) {
+            View child = layout.getChildAt(i);
+            if(child instanceof ViewGroup) {
+                totalHeight+=getFullHeight((ViewGroup)child);
+            }else {
+                int desiredWidth = View.MeasureSpec.makeMeasureSpec(layout.getWidth(),
+                        View.MeasureSpec.AT_MOST);
+                specWidth = View.MeasureSpec.makeMeasureSpec(layout.getMeasuredWidth() /* any */, View.MeasureSpec.AT_MOST);
+                specHeight = View.MeasureSpec.makeMeasureSpec(layout.getMeasuredHeight() /* any */, View.MeasureSpec.UNSPECIFIED);
+                child.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+                //child.measure(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+                totalHeight+=child.getMeasuredHeight();
+            }
+
+        }
+        layout.setVisibility(initialVisibility);
         return totalHeight;
     }
 

@@ -6,11 +6,13 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 
 
 /**
@@ -49,6 +51,8 @@ public class AccordionView extends RelativeLayout {
     int paragraphTopMargin;
 
     int paragraphBottomMargin;
+
+   // int paragraphHeight;
 
     AccordionExpansionCollapseListener listener;
 
@@ -174,6 +178,7 @@ public class AccordionView extends RelativeLayout {
         heading.setText(headingString);
         heading.setTextSize(headingTextSize);
         paragraph.setVisibility(VISIBLE);
+        //paragraph.getViewTreeObserver().addOnGlobalLayoutListener(globalLayoutListener);
         if (isAnimated) {
             headingLayout.setLayoutTransition(new LayoutTransition());
         } else {
@@ -200,6 +205,7 @@ public class AccordionView extends RelativeLayout {
         partition.setVisibility(isPartitioned ? VISIBLE : INVISIBLE);
         heading.setText(headingString);
         paragraph.setVisibility(VISIBLE);
+        //paragraph.getViewTreeObserver().addOnGlobalLayoutListener(globalLayoutListener);
         if (isAnimated) {
             headingLayout.setLayoutTransition(new LayoutTransition());
         } else {
@@ -396,4 +402,12 @@ public class AccordionView extends RelativeLayout {
     }
 
 
+    /*ViewTreeObserver.OnGlobalLayoutListener globalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
+        @Override
+        public void onGlobalLayout() {
+            paragraph.measure(0,0);
+            paragraphHeight = paragraph.getMeasuredHeight();
+        }
+    };
+*/
 }
