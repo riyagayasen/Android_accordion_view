@@ -86,10 +86,7 @@ public class WidgetHelper {
             }else {
                 int desiredWidth = View.MeasureSpec.makeMeasureSpec(layout.getWidth(),
                         View.MeasureSpec.AT_MOST);
-                specWidth = View.MeasureSpec.makeMeasureSpec(layout.getMeasuredWidth() /* any */, View.MeasureSpec.AT_MOST);
-                specHeight = View.MeasureSpec.makeMeasureSpec(layout.getMeasuredHeight() /* any */, View.MeasureSpec.UNSPECIFIED);
                 child.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-                //child.measure(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
                 totalHeight+=child.getMeasuredHeight();
             }
 

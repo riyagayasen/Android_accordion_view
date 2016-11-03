@@ -402,12 +402,5 @@ public class AccordionView extends RelativeLayout {
     }
 
 
-    /*ViewTreeObserver.OnGlobalLayoutListener globalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
-        @Override
-        public void onGlobalLayout() {
-            paragraph.measure(0,0);
-            paragraphHeight = paragraph.getMeasuredHeight();
-        }
-    };
-*/
+
 }
