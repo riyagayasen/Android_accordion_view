@@ -17,7 +17,7 @@ To add the Accordion component,(Note: this project was built using Android Studi
            
     OR add (to your app module's build.gradle)
     
-          compile 'com.riyagayasen.android:easyaccordion:1.0.1'  
+          compile 'com.riyagayasen.android:easyaccordion:1.0.2'  
 
   3. Now that you have added the project in your app, it is time to use it. 
 
