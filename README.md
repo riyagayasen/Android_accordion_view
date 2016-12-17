@@ -106,6 +106,26 @@ You would see that there are several new attributes I have defined for the accor
       The accordion view above is an AccordionView object that can be created as (in an Activity):
         
         AccordionView wordView = new AccordionView(this);
+  
+  5. Heading Background: this value determines the color/drawable to be used for the background
+      
+        app:headingBackground = "@drawable/example_layout_drawable" (to use a drawable)
+        app:headingBackgroundColor = "@android:color/white" (to set just the color)
+       
+       OR
+        
+        accordionView.setHeadingBackground(R.drawable.custom_background);    (to use a drawable)
+        accordionView.setHeadingBackgroundColor(Color.WHITE);    (to set just the color)
+        
+  6. Body/Paragraph Background: this value determines the color/drawable to be used for the body of the accordion
+        
+        app:bodyBackground="@drawable/custom_drawable" (to set the drawable)
+        app:bodyBackgroundColor="#233245" (to set the color)
+        
+       OR
+       
+        accordionView.setBodyBackground(R.drawable.custom_drawable);    (to set just the color)
+        accordionView.setBodyBackgroundColor(Color.CYAN);    (to set just the color)
       
       
  
