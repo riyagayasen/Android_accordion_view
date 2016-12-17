@@ -443,6 +443,23 @@ public class AccordionView extends RelativeLayout {
         }
     }
 
+
+    /***
+     * This function adds a background drawable to the heading. Works only for JellyBean and above
+     * @param resId
+     */
+    public void setHeadingBackGround(int resId) {
+        Drawable drawable = getResources().getDrawable(resId);
+
+        if(WidgetHelper.isNullOrBlank(headingLayout))
+            headingLayout = (LinearLayout) findViewById(R.id.heading_layout);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            headingLayout.setBackground(drawable);
+        }
+    }
+
     /***
      * This function adds a background drawable to the paragraph. Works only for JellyBean and above
      * @param drawable
@@ -457,6 +474,20 @@ public class AccordionView extends RelativeLayout {
         }
     }
 
+    /***
+     * This function adds a background drawable to the paragraph. Works only for JellyBean and above
+     * @param resId
+     */
+    public void setBodyBackGround(int resId) {
+        Drawable drawable = getResources().getDrawable(resId);
+
+        if(WidgetHelper.isNullOrBlank(paragraph))
+            paragraph = (RelativeLayout) findViewById(R.id.paragraph_layout);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            paragraph.setBackground(drawable);
+        }
+    }
     /***
      * This function adds a background color to the heading.
      * @param color
