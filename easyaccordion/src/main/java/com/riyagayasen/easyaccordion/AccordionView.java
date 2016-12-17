@@ -3,6 +3,9 @@ package com.riyagayasen.easyaccordion;
 import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +56,14 @@ public class AccordionView extends RelativeLayout {
     int paragraphBottomMargin;
 
    // int paragraphHeight;
+
+    int headingBackgroundColor = Color.WHITE;
+
+    int paragraphBackgroundColor = Color.WHITE;
+
+    Drawable headingBackground;
+
+    Drawable paragraphBackground;
 
     AccordionExpansionCollapseListener listener;
 
@@ -105,6 +116,13 @@ public class AccordionView extends RelativeLayout {
         headingTextSize = a.getDimensionPixelSize(R.styleable.accordion_headingTextSize, 20);
         if (WidgetHelper.isNullOrBlank(headingString))
             throw new IllegalStateException("Please specify a heading for the accordion");
+
+        headingBackgroundColor = a.getColor(R.styleable.accordion_headingBackgroundColor,Color.WHITE);
+        paragraphBackgroundColor = a.getColor(R.styleable.accordion_bodyBackgroundColor,Color.WHITE);
+
+        headingBackground = a.getDrawable(R.styleable.accordion_headingBackground);
+        paragraphBackground = a.getDrawable(R.styleable.accordion_bodyBackground);
+
 
     }
 
@@ -177,6 +195,19 @@ public class AccordionView extends RelativeLayout {
         partition.setVisibility(isPartitioned ? VISIBLE : INVISIBLE);
         heading.setText(headingString);
         heading.setTextSize(headingTextSize);
+
+        //Set the background on the heading...if the background drawable has been set by the user, use that. Else, set the background color
+        if(!WidgetHelper.isNullOrBlank(headingBackground) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+            headingLayout.setBackground(headingBackground);
+        else
+            headingLayout.setBackgroundColor(headingBackgroundColor);
+
+        //Set the background on the paragraph...if the background drawable has been set by the user, use that. Else, set the background color
+        if(!WidgetHelper.isNullOrBlank(paragraphBackground) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+            paragraph.setBackground(paragraphBackground);
+        else
+            paragraph.setBackgroundColor(paragraphBackgroundColor);
+
         paragraph.setVisibility(VISIBLE);
         //paragraph.getViewTreeObserver().addOnGlobalLayoutListener(globalLayoutListener);
         if (isAnimated) {
@@ -236,9 +267,7 @@ public class AccordionView extends RelativeLayout {
      */
     private void expand() {
         if (isAnimated) {
-          /*  LinearLayout parent = (LinearLayout)paragraph.getParent();
-            parent.setLayoutTransition(new LayoutTransition());
-          */
+
             AccordionTransitionAnimation expandAnimation = new AccordionTransitionAnimation(paragraph, 300, AccordionTransitionAnimation.EXPAND);
             expandAnimation.setHeight(WidgetHelper.getFullHeight(paragraph));
             expandAnimation.setEndBottomMargin(paragraphBottomMargin);
@@ -267,9 +296,7 @@ public class AccordionView extends RelativeLayout {
     private void collapse() {
 
         if (isAnimated) {
-            /*LinearLayout parent = (LinearLayout)paragraph.getParent();
-            parent.setLayoutTransition(new LayoutTransition());
-*/
+
             AccordionTransitionAnimation collapseAnimation = new AccordionTransitionAnimation(paragraph, 300, AccordionTransitionAnimation.COLLAPSE);
             paragraph.startAnimation(collapseAnimation);
 
@@ -400,6 +427,60 @@ public class AccordionView extends RelativeLayout {
         isPartitioned = partitioned;
         partition.setVisibility(isPartitioned ? VISIBLE : INVISIBLE);
     }
+
+    /***
+     * This function adds a background drawable to the heading. Works only for JellyBean and above
+     * @param drawable
+     */
+    public void setHeadingBackGround(Drawable drawable) {
+
+        if(WidgetHelper.isNullOrBlank(headingLayout))
+            headingLayout = (LinearLayout) findViewById(R.id.heading_layout);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            headingLayout.setBackground(drawable);
+        }
+    }
+
+    /***
+     * This function adds a background drawable to the paragraph. Works only for JellyBean and above
+     * @param drawable
+     */
+    public void setBodyBackGround(Drawable drawable) {
+
+        if(WidgetHelper.isNullOrBlank(paragraph))
+            paragraph = (RelativeLayout) findViewById(R.id.paragraph_layout);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            paragraph.setBackground(drawable);
+        }
+    }
+
+    /***
+     * This function adds a background color to the heading.
+     * @param color
+     */
+    public void setHeadingBackGroundColor(int color) {
+
+        if(WidgetHelper.isNullOrBlank(headingLayout))
+            headingLayout = (LinearLayout) findViewById(R.id.heading_layout);
+            headingLayout.setBackgroundColor(color);
+
+    }
+
+    /***
+     * This function adds a background color to the paragraph.
+     * @param color
+     */
+    public void setBodyBackGroundColor(int color) {
+
+        if(WidgetHelper.isNullOrBlank(paragraph))
+            paragraph = (RelativeLayout) findViewById(R.id.paragraph_layout);
+            paragraph.setBackgroundColor(color);
+
+    }
+
 
 
 

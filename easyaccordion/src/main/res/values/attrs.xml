@@ -7,6 +7,11 @@
         <attr name="heading" format="string"/>
         <attr name="headingTextSize" format="dimension"/>
         <attr name="isExpanded" format="boolean"/>
+        <attr name="headingBackgroundColor" format="color"/>
+        <attr name="bodyBackgroundColor" format="color"/>
+        <attr name="headingBackground" format="reference"/>
+        <attr name="bodyBackground" format="reference"/>
+
 
     </declare-styleable>
 </resources>
