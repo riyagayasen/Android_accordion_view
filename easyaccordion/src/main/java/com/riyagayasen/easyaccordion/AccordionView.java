@@ -117,8 +117,8 @@ public class AccordionView extends RelativeLayout {
         if (WidgetHelper.isNullOrBlank(headingString))
             throw new IllegalStateException("Please specify a heading for the accordion");
 
-        headingBackgroundColor = a.getColor(R.styleable.accordion_headingBackgroundColor,Color.WHITE);
-        paragraphBackgroundColor = a.getColor(R.styleable.accordion_bodyBackgroundColor,Color.WHITE);
+        headingBackgroundColor = a.getColor(R.styleable.accordion_headingBackgroundColor,0);
+        paragraphBackgroundColor = a.getColor(R.styleable.accordion_bodyBackgroundColor,0);
 
         headingBackground = a.getDrawable(R.styleable.accordion_headingBackground);
         paragraphBackground = a.getDrawable(R.styleable.accordion_bodyBackground);
@@ -199,13 +199,13 @@ public class AccordionView extends RelativeLayout {
         //Set the background on the heading...if the background drawable has been set by the user, use that. Else, set the background color
         if(!WidgetHelper.isNullOrBlank(headingBackground) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
             headingLayout.setBackground(headingBackground);
-        else
+        else if(!WidgetHelper.isNullOrBlank(headingBackgroundColor))
             headingLayout.setBackgroundColor(headingBackgroundColor);
 
         //Set the background on the paragraph...if the background drawable has been set by the user, use that. Else, set the background color
         if(!WidgetHelper.isNullOrBlank(paragraphBackground) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
             paragraph.setBackground(paragraphBackground);
-        else
+        else if(!WidgetHelper.isNullOrBlank(paragraphBackgroundColor))
             paragraph.setBackgroundColor(paragraphBackgroundColor);
 
         paragraph.setVisibility(VISIBLE);
