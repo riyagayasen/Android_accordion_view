@@ -351,6 +351,10 @@ public class AccordionView extends RelativeLayout {
     public void setHeadingString(String headingString) {
         heading.setText(headingString);
     }
+    
+    public void setHeadingStringColor(int color) {
+        heading.setTextColor(color);
+    }
 
 
     public void setIsAnimated(Boolean isAnimated) {
